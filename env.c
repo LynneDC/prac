@@ -4,7 +4,7 @@
  *
  * Return: 1 - successful
  */
-int  *env(void)
+char  *env(void)
 {
 	size_t i = 0;
 	/* check if the value of i is not NULL*/
@@ -12,10 +12,10 @@ int  *env(void)
 	while(environ[i] != NULL)
 	{
 		if (_puts(environ[i]) == -1 || _puts("\n") == -1)
-			return (-1);
+			return (NULL);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
 /**
  * shellexit - free memory and exits the shell program

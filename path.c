@@ -20,39 +20,39 @@ int dir_len = _strlen(argv[0]);
 /*check if has  NULL */
 while (path_hold != NULL)
 {
-/*calculate contents of path_hold */
-size_t path_len = _strlen(path_hold);
-/*allocate memory for path_len and path_hold */ 
-dir = malloc(dir_len + path_len + 2);
+	/*calculate contents of path_hold */
+	size_t path_len = _strlen(path_hold);
+	/*allocate memory for path_len and path_hold */ 
+	dir = malloc(dir_len + path_len + 2);
 
-/*check if malloc was successful */
+	/*check if malloc was successful */
 
-if (dir == NULL) 
-{
-/*check if  allocation failed*/
-return (NULL);
-}
-/*copy path_hold to dir*/
+	if (dir == NULL) 
+	{
+	/*check if  allocation failed*/
+	return (NULL);
+	}
+	/*copy path_hold to dir*/
 
-_strcpy(dir, path_hold);
+	_strcpy(dir, path_hold);
 
-/*append  characters to dir*/
-_strcat(dir, "/");
-_strcat(dir, argv[0]);
-_strcat(dir, '\0');
+	/*append  characters to dir*/
+	_strcat(dir, "/");
+	_strcat(dir, argv[0]);
+	_strcat(dir, '\0');
 
-/*check if stat retrieved infor successesfuly */
-if (stat(dir, &buffer) == 0) 
-{
-/*File exists, return the path*/
-return (dir);
-}
-/*free memory allocated to dir*/
-free(dir);
-/*check if all the path have been tokenized yet */
-path_hold = strtok(NULL, ":");
-}
+	/*check if stat retrieved infor successesfuly */
+	if (stat(dir, &buffer) == 0) 
+	{
+	/*File exists, return the path*/
+	return (dir);
+	}
+	/*free memory allocated to dir*/
+	free(dir);
+	/*check if all the path have been tokenized yet */
+	path_hold = strtok(NULL, ":");
+	}
 
-/* File not found in any of the directories*/
-return (0);
+	/* File not found in any of the directories*/
+	return (NULL);
 }
