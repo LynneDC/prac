@@ -55,6 +55,7 @@ while ((getline(&lineptr, &n, stdin)) > 0)
 	} else {
 		wait(NULL);
 	}
+	printf("%s", prompt);
 }
 
 	free(cmd_args);
