@@ -47,16 +47,31 @@ while ((getline(&lineptr, &n, stdin)) > 0)
 	}
 	if (pid == 0) 
 	{
-		if (execvp(cmd_args[0], cmd_args) == -1) 
+		char *temp = NULL;
+		char path[10];
+		
+		if (cmd_args[0][0] == '/')
+			temp = cmd_args[0];
+		else
+		{
+			strcpy(path, "/bin/");
+			strcat(path, cmd_args[0]);
+			temp = strdup(path);
+		}
+		if (execve(temp, cmd_args, environ) == -1) 
 		{
 			perror("execvp");
 			exit(EXIT_FAILURE);
 		}
+		if (temp != NULL)
+			free(temp);
+			
 	} else {
-		wait(NULL);
+		wait(&pid);
 	}
 	printf("%s", prompt);
 }
+	
 
 	free(cmd_args);
 
