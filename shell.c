@@ -32,6 +32,8 @@ while ((getline(&lineptr, &n, stdin)) > 0)
 
 	if (strcmp(cmd_args[0], "env") == 0)
 		  _env();
+	if (strcmp(cmd_args[0], "exit") == 0)
+		  exit(0);
 	
 	pid = fork();
 	if (pid < 0) 
