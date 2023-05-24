@@ -30,14 +30,8 @@ while ((getline(&lineptr, &n, stdin)) > 0)
 	}
 	cmd_args[i] = NULL;
 
-	/*if (strcmp(cmd_args[0], "cd") == 0) {
-	if (i > 1) {
-	if (chdir(cmd_args[1]) != 0) {
-	perror("cd failed");
-	}
-	} else {
-	chdir(getenv("HOME"));
-	}*/
+	if (strcmp(cmd_args[0], "env") == 0)
+		  _env();
 	
 	pid = fork();
 	if (pid < 0) 
@@ -79,3 +73,15 @@ while ((getline(&lineptr, &n, stdin)) > 0)
 
 	return 0;
 }
+
+void _env(void)
+{
+	char **myenv = environ;
+	
+	{
+		printf("%s\n", *myenv);
+		myenv++;
+	}
+}
+	
+	

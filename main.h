@@ -36,4 +36,5 @@ int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strncpy(char *dest, char *src, int n);
 /*build ins*/
 char *path_find(char **cmd);
+void _env(void);
 #endif
